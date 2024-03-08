@@ -1,0 +1,1 @@
+A ideia é fazer com que a matriz tenha valores que sejam referentes as peças do xadrez, como 12 = Torre, por exemplo. A partir disso, uma função verificaria o valor que existem na casa referente e imprimiria na tela a letra referente a peça, enquanto outra mudaria a posição dessas peças dentro do tabuleiro.
