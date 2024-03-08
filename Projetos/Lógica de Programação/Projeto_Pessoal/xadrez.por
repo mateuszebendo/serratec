@@ -29,7 +29,6 @@ programa
 		escreva("\nDigite a coluna para que deseja move-la: ")
 		leia(coluna_final)
 		
-		
 	  	escrever_na_tela(tabuleiro, linha_inicial, linha_final, coluna_inicial, coluna_final)
 		}
 	}
@@ -47,15 +46,15 @@ programa
 			para(inteiro j = 0; j < oito; j++){
 				 se(linha_final == i e coluna_final == j){
 					tabuleiro[i][j] = peca
-					mover_peca(peca)	
+					mover_peca(tabuleiro, linha_inicial, linha_final, coluna_inicial, coluna_final, peca)	
 				}
 				senao se(tabuleiro[i][j] == 0) escreva("|   ")
-				senao se(tabuleiro[i][j] == 1) escreva("| P ")
-				senao se(tabuleiro[i][j] == 2) escreva("| B ")		
-				senao se(tabuleiro[i][j] == 3) escreva("| C ")
-				senao se(tabuleiro[i][j] == 4) escreva("| T ")
-				senao se(tabuleiro[i][j] == 5) escreva("| R ")
-				senao se(tabuleiro[i][j] == 6) escreva("| K ")
+				senao se(tabuleiro[i][j] == 1) escreva("| ♙ ")
+				senao se(tabuleiro[i][j] == 2) escreva("| ♗ ")		
+				senao se(tabuleiro[i][j] == 3) escreva("| ♘")
+				senao se(tabuleiro[i][j] == 4) escreva("| ♖ ")
+				senao se(tabuleiro[i][j] == 5) escreva("| ♕ ")
+				senao se(tabuleiro[i][j] == 6) escreva("| ♔ ")
 		}
 			se(i== 7) {
 				escreva("\n ---------------------------------")
@@ -84,15 +83,15 @@ programa
 				}
 				senao se(linha_final == i e coluna_final == j){
 					tabuleiro[i][j] = peca
-					mover_peca(peca)	
+					mover_peca(tabuleiro, linha_inicial, linha_final, coluna_inicial, coluna_final, peca)	
 				}
 				senao se(tabuleiro[i][j] == 0) escreva("|   ")
-				senao se(tabuleiro[i][j] == 1) escreva("| P ")
-				senao se(tabuleiro[i][j] == 2) escreva("| B ")		
-				senao se(tabuleiro[i][j] == 3) escreva("| C ")
-				senao se(tabuleiro[i][j] == 4) escreva("| T ")
-				senao se(tabuleiro[i][j] == 5) escreva("| R ")
-				senao se(tabuleiro[i][j] == 6) escreva("| K ")
+				senao se(tabuleiro[i][j] == 1) escreva("| ♙ ")
+				senao se(tabuleiro[i][j] == 2) escreva("| ♗ ")		
+				senao se(tabuleiro[i][j] == 3) escreva("| ♘")
+				senao se(tabuleiro[i][j] == 4) escreva("| ♖ ")
+				senao se(tabuleiro[i][j] == 5) escreva("| ♕ ")
+				senao se(tabuleiro[i][j] == 6) escreva("| ♔ ")
 		}
 			se(i== 7) {
 				escreva("\n ---------------------------------")
@@ -125,13 +124,46 @@ programa
 		}
 	}
 
-	funcao mover_peca(inteiro peca){
-				se(peca == 1) escreva("| P ")
-				se(peca == 2) escreva("| B ")		
-				se(peca == 3) escreva("| C ")
-				se(peca == 4) escreva("| T ")
-				se(peca == 5) escreva("| R ")
-				se(peca == 6) escreva("| K ")
+	funcao mover_peca(inteiro tabuleiro[][], inteiro linha_inicial, inteiro linha_final, inteiro coluna_inicial, inteiro coluna_final, inteiro peca){
+				inteiro movimento_vertical = linha_final - linha_inicial
+				inteiro movimento_horizontal = coluna_final - coluna_inicial 
+				se(peca == 1){
+					se((movimento_vertical < 3 e movimento_vertical > 0) e movimento_horizontal == 0) escreva("| ♙ ")
+					senao {
+						escreva(" MOVIMENTO INVÁLIDO ")
+						setar_tabuleiro(tabuleiro)
+						linha_inicial = 20 
+	 				 	linha_final = 20 
+	 					coluna_inicial = 20 
+	 					coluna_final = 20
+	 					escrever_na_tela(tabuleiro, linha_inicial, linha_final, coluna_inicial, coluna_final)
+					}
+					
+				}
+				se(peca == 2){
+					se(movimento_vertical == movimento_horizontal) escreva("| ♗ ")	
+					senao escreva("| X ")	
+				}
+				se(peca == 3){
+					se((movimento_vertical == 3 ou movimento_vertical == -3 ou movimento_vertical == 1 ou movimento_vertical == -1) e (movimento_horizontal == 3 ou movimento_horizontal == -3 ou movimento_horizontal == 1 ou movimento_horizontal == -1)) 
+					escreva("| ♘ ")
+					senao escreva("| X ")
+				}
+				se(peca == 4){
+					se((movimento_vertical != 0 e movimento_horizontal == 0) ou  (movimento_vertical == 0 e movimento_horizontal != 0))
+					escreva("| ♖ ")
+					senao escreva("| X ")
+				}
+				se(peca == 5){
+					se((movimento_vertical != 0 e movimento_horizontal == 0) ou (movimento_vertical == 0 e movimento_horizontal != 0) ou (movimento_vertical == movimento_horizontal))
+					escreva("| ♕ ")
+					senao escreva("| X ")
+				}
+				se(peca == 6){
+					se((movimento_vertical == 1 ou movimento_horizontal == 1) ou (movimento_vertical == movimento_horizontal)) 
+					escreva("| ♔ ")
+					senao escreva("| X ")
+				}
 	}
 
   
@@ -141,7 +173,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 1329; 
+ * @POSICAO-CURSOR = 4820; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

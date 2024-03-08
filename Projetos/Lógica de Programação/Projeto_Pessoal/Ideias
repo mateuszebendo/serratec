@@ -1,1 +1,3 @@
 A ideia é fazer com que a matriz tenha valores que sejam referentes as peças do xadrez, como 12 = Torre, por exemplo. A partir disso, uma função verificaria o valor que existem na casa referente e imprimiria na tela a letra referente a peça, enquanto outra mudaria a posição dessas peças dentro do tabuleiro.
+
+Agora que consegui fazer a primeira parte, falta colocar as regras em ação. Vou começar com a movimentação das peças. Depois dividir as jogadas entre dois jogadores. Na verdade, antes disso tudo vou colocar que uma peça não pode ir para cima de outra. Por último vai ser o lance de comer outra, já tenho algumas ideias.
