@@ -12,6 +12,7 @@ programa
 	 	logico verificador = falso
 
 	 	escrever_na_tela(tabuleiro_salvo, tabuleiro, linha_inicial, linha_final, coluna_inicial, coluna_final)
+	 	salvar_estado(tabuleiro_salvo,linha_inicial, linha_final, coluna_inicial, coluna_final)
 	 	
 		enquanto(verificador == falso){
 		escreva("\n")
@@ -66,20 +67,20 @@ programa
 
   	funcao salvar_estado(logico &tabuleiro_salvo[][], inteiro linha_inicial, inteiro linha_final, inteiro coluna_inicial, inteiro coluna_final){
 
-		para(inteiro i = 0; i < oito; i++){
-			para(inteiro j = 0; j < oito; j++){
-				se(i < 2 ou i > 5) tabuleiro_salvo[j][i] = verdadeiro
-				senao tabuleiro_salvo[j][i] = falso
+		para(inteiro i = 0; i < oito - 1; i++){
+			para(inteiro j = 0; j < oito - 1; j++){
+				se(i < 2 ou i > 5) tabuleiro_salvo[i][j] = verdadeiro
+				senao tabuleiro_salvo[i][j] = falso
 			}
 		}
 
-		para(inteiro i = 0; i < oito; i++){
-			para(inteiro j = 0; j < oito; j++){
+		para(inteiro i = 0; i < oito - 1; i++){
+			para(inteiro j = 0; j < oito - 1; j++){
 				se(coluna_inicial  == i e linha_inicial == j){
-					tabuleiro_salvo[j][i] = falso
+					tabuleiro_salvo[i][j] = falso
 				}
 				se(coluna_final == i e linha_final == j){
-					tabuleiro_salvo[j][i] = verdadeiro
+					tabuleiro_salvo[i][j] = verdadeiro
 				}
 			}
 		}
@@ -87,18 +88,18 @@ programa
 
 	funcao logico verificacao (logico tabuleiro_salvo[][], inteiro linha_inicial, inteiro linha_final, inteiro coluna_inicial, inteiro coluna_final){
 
-		para(inteiro i = 0; i < oito; i++){
-			para(inteiro j = 0; j < oito; j++){
-				se((coluna_inicial  == i e linha_inicial == j) e tabuleiro_salvo[j][i] == verdadeiro){
+		para(inteiro i = 0; i < oito - 1; i++){
+			para(inteiro j = 0; j < oito - 1; j++){
+				se((coluna_inicial  == i e linha_inicial == j) e tabuleiro_salvo[i][j] == verdadeiro){
 					retorne verdadeiro
 				}
-				se((coluna_final == i e linha_final == j) e tabuleiro_salvo[j][i] == falso){
+				se((coluna_final == i e linha_final == j) e tabuleiro_salvo[i][j] == falso){
 					retorne falso 
 				}
 				
 			}
 		}
-
+			retorne falso
   	}
 		
 
@@ -109,7 +110,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 3093; 
+ * @POSICAO-CURSOR = 3197; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
