@@ -4,16 +4,15 @@ programa
 	const inteiro oito = 8 
 	funcao inicio()
 	{
-	 	inteiro tabuleiro[7][7]
-	 	logico tabuleiro_salvo[7][7]
+	 	inteiro tabuleiro[8][8]
 	 	inteiro linha_inicial = 20 
 	 	inteiro linha_final = 20 
 	 	inteiro coluna_inicial = 20 
 	 	inteiro coluna_final = 20
 	 	logico verificador = falso
 
-	 	escrever_na_tela(tabuleiro_salvo, tabuleiro, linha_inicial, linha_final, coluna_inicial, coluna_final)
-	 	salvar_estado(tabuleiro_salvo,linha_inicial, linha_final, coluna_inicial, coluna_final)
+		setar_tabuleiro(tabuleiro)
+	 	escrever_na_tela(tabuleiro, linha_inicial, linha_final, coluna_inicial, coluna_final)
 	 	
 		enquanto(verificador == falso){
 		escreva("\n")
@@ -31,30 +30,36 @@ programa
 		leia(coluna_final)
 		
 		
-	  	escrever_na_tela(tabuleiro_salvo, tabuleiro, linha_inicial, linha_final, coluna_inicial, coluna_final)
+	  	escrever_na_tela(tabuleiro, linha_inicial, linha_final, coluna_inicial, coluna_final)
 		}
 	}
 
-	funcao escrever_na_tela (logico &tabuleiro_salvo[][], inteiro tabuleiro[][], inteiro coluna_inicial, inteiro coluna_final, inteiro linha_inicial, inteiro linha_final){
+	funcao escrever_na_tela (inteiro &tabuleiro[][], inteiro coluna_inicial, inteiro coluna_final, inteiro linha_inicial, inteiro linha_final){
 		inteiro numero_linha = 0 
+		inteiro peca = 0
 		para(inteiro i = 0; i < oito; i++){
 			escreva("\n ---------------------------------")
 			escreva("\n")
 			escreva("| " + numero_linha + " ")
 			para(inteiro j = 0; j < oito; j++){
-				se((coluna_inicial  == i e linha_inicial == j) ou verificacao(tabuleiro_salvo, linha_inicial, linha_final, coluna_inicial, coluna_final) == falso){
+				se(tabuleiro[i][j] == 0) escreva("|   ")
+				se(tabuleiro[i][j] == 1) escreva("| P ")
+				se(tabuleiro[i][j] == 2) escreva("| B ")		
+				se(tabuleiro[i][j] == 3) escreva("| C ")
+				se(tabuleiro[i][j] == 4) escreva("| T ")
+				se(tabuleiro[i][j] == 5) escreva("| R ")
+				se(tabuleiro[i][j] == 6) escreva("| K ")
+				senao se(coluna_inicial == j e linha_inicial == i){
+					peca = tabuleiro[linha_inicial][coluna_inicial]
+					tabuleiro[linha_inicial][coluna_inicial] = 0
 					escreva("|   ")
-					j++
-					salvar_estado(tabuleiro_salvo,linha_inicial, linha_final, coluna_inicial, coluna_final)
 				}
-				se((coluna_final == i e linha_final == j) ou verificacao(tabuleiro_salvo, linha_inicial, linha_final, coluna_inicial, coluna_final) == verdadeiro){
-					escreva("| P ")
-					salvar_estado(tabuleiro_salvo,linha_inicial, linha_final, coluna_inicial, coluna_final)
+				senao se(coluna_final == j e linha_final == i){
+					tabuleiro[linha_final][coluna_final] = peca
+					mover_peca(peca)
 				}
-				senao se(i < 2 ou i > 5) escreva("| P ")
-				senao escreva("|   ")
 		}
-			se(i == 7) {
+			se(i== 7) {
 				escreva("\n ---------------------------------")
 				escreva("\n")
 				escreva("|   ")
@@ -67,43 +72,30 @@ programa
 	  
   }
 
-  	funcao salvar_estado(logico &tabuleiro_salvo[][], inteiro linha_inicial, inteiro linha_final, inteiro coluna_inicial, inteiro coluna_final){
 
-		para(inteiro i = 0; i < oito - 1; i++){
-			para(inteiro j = 0; j < oito - 1; j++){
-				se(i < 2 ou i > 5) tabuleiro_salvo[i][j] = verdadeiro
-				senao tabuleiro_salvo[i][j] = falso
-			}
+	/* 1 Peão, 2 Bispo, 3 Cavalo, 4 Torre, 5 Rainha, 6 Rei*/
+	funcao setar_tabuleiro(inteiro &tabuleiro[][]){
+		para(inteiro i = 0; i < oito; i++){
+			para(inteiro j = 0; j < oito; j++){
+				se(((i == 0 e j == 0) ou (i == 0 e j == 7)) ou ((i == 7 e j == 0) ou (i == 7 e j == 7))) tabuleiro[i][j] = 4
+				senao se(((i == 0 e j == 1) ou (i == 0 e j == 6)) ou ((i == 7 e j == 1) ou (i == 7 e j == 6)))  tabuleiro[i][j] = 2		
+				senao se(((i == 0 e j == 2) ou (i == 0 e j == 5)) ou ((i == 7 e j == 2) ou (i == 7 e j == 5)))  tabuleiro[i][j] = 3	
+				senao se((i == 0 e j == 3) ou (i == 7 e j == 3) ) tabuleiro[i][j] = 5	
+				senao se((i == 0 e j == 4)  ou (i == 7 e j == 4)) tabuleiro[i][j] = 6
+				senao se(i==1 ou i==6) tabuleiro[i][j] = 1
+				senao tabuleiro[i][j] = 0
+				}
 		}
+	}
 
-		para(inteiro i = 0; i < oito - 1; i++){
-			para(inteiro j = 0; j < oito - 1; j++){
-				se(coluna_inicial  == i e linha_inicial == j){
-					tabuleiro_salvo[i][j] = falso
-				}
-				se(coluna_final == i e linha_final == j){
-					tabuleiro_salvo[i][j] = verdadeiro
-				}
-			}
-		}
-  	}
-
-	funcao logico verificacao (logico tabuleiro_salvo[][], inteiro linha_inicial, inteiro linha_final, inteiro coluna_inicial, inteiro coluna_final){
-
-		para(inteiro i = 0; i < oito - 1; i++){
-			para(inteiro j = 0; j < oito - 1; j++){
-				se((coluna_inicial  == i e linha_inicial == j) e tabuleiro_salvo[i][j] == verdadeiro){
-					retorne verdadeiro
-				}
-				se((coluna_final == i e linha_final == j) e tabuleiro_salvo[i][j] == falso){
-					retorne falso 
-				}
-				
-			}
-		}
-			retorne falso
-  	}
-		
+	funcao mover_peca(inteiro peca){
+				se(peca == 1) escreva("| P ")
+				se(peca == 2) escreva("| B ")		
+				se(peca == 3) escreva("| C ")
+				se(peca == 4) escreva("| T ")
+				se(peca == 5) escreva("| R ")
+				se(peca == 6) escreva("| K ")
+	}
 
   
 }
@@ -112,9 +104,9 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 1117; 
+ * @POSICAO-CURSOR = 1975; 
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = {tabuleiro, 7, 11, 9}-{tabuleiro_salvo, 8, 10, 15}-{linha_inicial, 9, 11, 13}-{linha_final, 10, 11, 11}-{coluna_inicial, 11, 11, 14}-{coluna_final, 12, 11, 12}-{verificador, 13, 10, 11}-{tabuleiro_salvo, 38, 34, 15}-{tabuleiro, 38, 63, 9}-{coluna_inicial, 38, 86, 14}-{coluna_final, 38, 110, 12}-{linha_inicial, 38, 132, 13}-{linha_final, 38, 155, 11}-{numero_linha, 39, 10, 12}-{i, 40, 15, 1}-{j, 44, 16, 1}-{k, 61, 17, 1}-{tabuleiro_salvo, 70, 32, 15}-{linha_inicial, 70, 61, 13}-{linha_final, 70, 84, 11}-{coluna_inicial, 70, 105, 14}-{coluna_final, 70, 129, 12}-{i, 72, 15, 1}-{j, 73, 16, 1}-{i, 79, 15, 1}-{j, 80, 16, 1}-{tabuleiro_salvo, 91, 35, 15}-{linha_inicial, 91, 64, 13}-{linha_final, 91, 87, 11}-{coluna_inicial, 91, 108, 14}-{coluna_final, 91, 132, 12}-{i, 93, 15, 1}-{j, 94, 16, 1};
+ * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
