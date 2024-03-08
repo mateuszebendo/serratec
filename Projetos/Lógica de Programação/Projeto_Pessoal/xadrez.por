@@ -35,29 +35,29 @@ programa
 	}
 
 	funcao escrever_na_tela (inteiro &tabuleiro[][], inteiro coluna_inicial, inteiro coluna_final, inteiro linha_inicial, inteiro linha_final){
-		inteiro numero_linha = 0 
+		inteiro numero_linha = 0
 		inteiro peca = 0
 		para(inteiro i = 0; i < oito; i++){
 			escreva("\n ---------------------------------")
 			escreva("\n")
 			escreva("| " + numero_linha + " ")
 			para(inteiro j = 0; j < oito; j++){
-				se(tabuleiro[i][j] == 0) escreva("|   ")
-				se(tabuleiro[i][j] == 1) escreva("| P ")
-				se(tabuleiro[i][j] == 2) escreva("| B ")		
-				se(tabuleiro[i][j] == 3) escreva("| C ")
-				se(tabuleiro[i][j] == 4) escreva("| T ")
-				se(tabuleiro[i][j] == 5) escreva("| R ")
-				se(tabuleiro[i][j] == 6) escreva("| K ")
-				senao se(coluna_inicial == j e linha_inicial == i){
-					peca = tabuleiro[linha_inicial][coluna_inicial]
-					tabuleiro[linha_inicial][coluna_inicial] = 0
+				se(coluna_inicial == i e linha_inicial == j){
+					peca = tabuleiro[i][j]
+					tabuleiro[i][j] = 0
 					escreva("|   ")
 				}
-				senao se(coluna_final == j e linha_final == i){
-					tabuleiro[linha_final][coluna_final] = peca
+				senao se(coluna_final == i e linha_final == j){
+					tabuleiro[i][j] = peca
 					mover_peca(peca)
 				}
+				senao se(tabuleiro[i][j] == 0) escreva("|   ")
+				senao se(tabuleiro[i][j] == 1) escreva("| P ")
+				senao se(tabuleiro[i][j] == 2) escreva("| B ")		
+				senao se(tabuleiro[i][j] == 3) escreva("| C ")
+				senao se(tabuleiro[i][j] == 4) escreva("| T ")
+				senao se(tabuleiro[i][j] == 5) escreva("| R ")
+				senao se(tabuleiro[i][j] == 6) escreva("| K ")
 		}
 			se(i== 7) {
 				escreva("\n ---------------------------------")
@@ -67,7 +67,9 @@ programa
 					escreva("| " + k + " ")
 				}
 			}
+			escreva("|")
 			numero_linha++
+			
 	 }
 	  
   }
@@ -104,7 +106,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 1975; 
+ * @POSICAO-CURSOR = 1637; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
