@@ -34,22 +34,20 @@ programa
 		}
 	}
 
-	funcao escrever_na_tela (inteiro &tabuleiro[][], inteiro coluna_inicial, inteiro coluna_final, inteiro linha_inicial, inteiro linha_final){
+	funcao escrever_na_tela (inteiro &tabuleiro[][], inteiro linha_inicial, inteiro linha_final, inteiro coluna_inicial, inteiro coluna_final){
 		inteiro numero_linha = 0
 		inteiro peca = 0
-		para(inteiro i = 0; i < oito; i++){
+		se(linha_inicial > linha_final){
+			peca = tabuleiro[linha_inicial][coluna_inicial]
+			tabuleiro[linha_inicial][coluna_inicial] = 0
+			para(inteiro i = 0; i < oito; i++){
 			escreva("\n ---------------------------------")
 			escreva("\n")
 			escreva("| " + numero_linha + " ")
 			para(inteiro j = 0; j < oito; j++){
-				se(coluna_inicial == i e linha_inicial == j){
-					peca = tabuleiro[i][j]
-					tabuleiro[i][j] = 0
-					escreva("|   ")
-				}
-				senao se(coluna_final == i e linha_final == j){
+				 se(linha_final == i e coluna_final == j){
 					tabuleiro[i][j] = peca
-					mover_peca(peca)
+					mover_peca(peca)	
 				}
 				senao se(tabuleiro[i][j] == 0) escreva("|   ")
 				senao se(tabuleiro[i][j] == 1) escreva("| P ")
@@ -71,9 +69,46 @@ programa
 			numero_linha++
 			
 	 }
-	  
+			
+		}
+		senao{
+		para(inteiro i = 0; i < oito; i++){
+			escreva("\n ---------------------------------")
+			escreva("\n")
+			escreva("| " + numero_linha + " ")
+			para(inteiro j = 0; j < oito; j++){
+				se(linha_inicial == i e coluna_inicial == j){
+					peca = tabuleiro[i][j]
+					tabuleiro[i][j] = 0
+					escreva("|   ")
+				}
+				senao se(linha_final == i e coluna_final == j){
+					tabuleiro[i][j] = peca
+					mover_peca(peca)	
+				}
+				senao se(tabuleiro[i][j] == 0) escreva("|   ")
+				senao se(tabuleiro[i][j] == 1) escreva("| P ")
+				senao se(tabuleiro[i][j] == 2) escreva("| B ")		
+				senao se(tabuleiro[i][j] == 3) escreva("| C ")
+				senao se(tabuleiro[i][j] == 4) escreva("| T ")
+				senao se(tabuleiro[i][j] == 5) escreva("| R ")
+				senao se(tabuleiro[i][j] == 6) escreva("| K ")
+		}
+			se(i== 7) {
+				escreva("\n ---------------------------------")
+				escreva("\n")
+				escreva("|   ")
+				para(inteiro k = 0; k < oito; k++){
+					escreva("| " + k + " ")
+				}
+			}
+			escreva("|")
+			numero_linha++
+			
+	 }
+		 
   }
-
+	}
 
 	/* 1 Peão, 2 Bispo, 3 Cavalo, 4 Torre, 5 Rainha, 6 Rei*/
 	funcao setar_tabuleiro(inteiro &tabuleiro[][]){
@@ -106,7 +141,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 1637; 
+ * @POSICAO-CURSOR = 1329; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
