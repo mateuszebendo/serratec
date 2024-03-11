@@ -128,20 +128,13 @@ programa
 				inteiro movimento_vertical = linha_final - linha_inicial
 				inteiro movimento_horizontal = coluna_final - coluna_inicial 
 				se(peca == 1){
-					se((movimento_vertical < 3 e movimento_vertical > 0) e movimento_horizontal == 0) escreva("| ♙ ")
-					senao {
-						escreva(" MOVIMENTO INVÁLIDO ")
-						setar_tabuleiro(tabuleiro)
-						linha_inicial = 20 
-	 				 	linha_final = 20 
-	 					coluna_inicial = 20 
-	 					coluna_final = 20
-	 					escrever_na_tela(tabuleiro, linha_inicial, linha_final, coluna_inicial, coluna_final)
-					}
+					se(((movimento_vertical < 3 e movimento_vertical > 0) ou (movimento_vertical < 0 e movimento_vertical > -3) e movimento_horizontal == 0)) escreva("| ♙ ")
+					senao movimento_invalido(tabuleiro, linha_inicial, linha_final, coluna_inicial, coluna_final, peca)
 					
 				}
 				se(peca == 2){
-					se(movimento_vertical == movimento_horizontal) escreva("| ♗ ")	
+					se((movimento_vertical == movimento_horizontal) ou (movimento_vertical == -movimento_horizontal) ou (-movimento_vertical == movimento_horizontal))
+					escreva("| ♗ ")	
 					senao escreva("| X ")	
 				}
 				se(peca == 3){
@@ -160,10 +153,39 @@ programa
 					senao escreva("| X ")
 				}
 				se(peca == 6){
-					se((movimento_vertical == 1 ou movimento_horizontal == 1) ou (movimento_vertical == movimento_horizontal)) 
+					se((movimento_vertical == 1 ou movimento_horizontal == 1) ou (movimento_vertical == movimento_horizontal) ou (movimento_vertical == -1 ou movimento_horizontal == -1)) 
 					escreva("| ♔ ")
 					senao escreva("| X ")
 				}
+	}
+
+	funcao movimento_invalido(inteiro &tabuleiro[][], inteiro linha_inicial, inteiro linha_final, inteiro coluna_inicial, inteiro coluna_final, inteiro peca){
+	 	tabuleiro[linha_final][coluna_final] = 0
+	 	tabuleiro[linha_inicial][coluna_inicial] = peca
+
+		linha_inicial = 20
+		linha_final = 20
+		coluna_inicial = 20
+		coluna_final = 20
+	 	
+		escreva("\n ---------------------------------")
+		escreva(" \nMOVIMENTO INVÁLIDO ")
+		escreva("\n ---------------------------------")	
+		escreva("\n")
+		escrever_na_tela(tabuleiro, linha_inicial, linha_final, coluna_inicial, coluna_final)
+		escreva("\nDigite a linha da peça que deseja mover se encontra: ")
+		leia(linha_inicial)
+		
+		escreva("\nDigite a coluna da peça que deseja mover se encontra: ")
+		leia(coluna_inicial)
+		
+		
+		escreva("\nDigite a linha para que deseja move-la: ")
+		leia(linha_final)
+		
+		escreva("\nDigite a coluna para que deseja move-la: ")
+		leia(coluna_final)
+	 	escrever_na_tela(tabuleiro, linha_inicial, linha_final, coluna_inicial, coluna_final)
 	}
 
   
@@ -173,7 +195,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 4820; 
+ * @POSICAO-CURSOR = 5075; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
