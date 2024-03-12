@@ -1,6 +1,6 @@
 programa
 {
-	inclua biblioteca Util --> u
+	inclua biblioteca Util --> u
 	funcao inicio()
 	{
 		inteiro tabuleiro[3][3]
@@ -9,7 +9,7 @@ programa
 
 		setar_tabuleiro(tabuleiro)
 
-		enquanto(vencedor != 1 ou vencedor != 2){
+		enquanto(nao(vencedor == 1 ou vencedor == 2)){
 			jogada(tabuleiro, jogador)
 			vencedor = ganhador(tabuleiro)
 			jogador++
@@ -105,9 +105,9 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 1592; 
+ * @POSICAO-CURSOR = 292; 
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = {tabuleiro, 6, 10, 9}-{vencedor, 7, 10, 8}-{jogador, 8, 10, 7}-{tabuleiro, 21, 33, 9}-{i, 22, 15, 1}-{j, 23, 16, 1}-{numero_linha, 26, 10, 12}-{i, 27, 15, 1}-{j, 30, 16, 1}-{k, 39, 15, 1}-{tabuleiro, 46, 25, 9}-{jogador, 46, 48, 7}-{linha, 47, 10, 5}-{coluna, 47, 17, 6}-{numero_linha, 63, 10, 12}-{i, 64, 15, 1}-{j, 67, 16, 1}-{k, 78, 15, 1}-{tabuleiro, 85, 35, 9}-{i, 86, 15, 1}-{j, 92, 16, 1};
+ * @SIMBOLOS-INSPECIONADOS = {tabuleiro, 6, 10, 9}-{vencedor, 7, 10, 8}-{jogador, 8, 10, 7}-{tabuleiro, 21, 33, 9}-{i, 22, 15, 1}-{j, 23, 16, 1}-{numero_linha, 26, 10, 12}-{i, 27, 15, 1}-{j, 30, 16, 1}-{k, 39, 15, 1}-{linha, 47, 10, 5}-{coluna, 47, 17, 6};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
