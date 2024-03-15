@@ -195,67 +195,29 @@ programa
 			
 	}
 
-		funcao exibicaoAluno (cadeia listaAlunos[][])
+	funcao exibicaoAluno (cadeia listaAlunos[][])
 	{
 		
 		inteiro linhas = Util.numero_linhas(listaAlunos)
-		cadeia aniversariantes[12][99]
-		para(inteiro i = 0; i < 12; i++){
-			para(inteiro j = 0; j < 99; j++) aniversariantes[i][j] = "0"
-		}
-		para(inteiro i = 0; i < linhas; i++){
-				escolha(Tipos.cadeia_para_inteiro(listaAlunos[i][1], 10)){
-					caso 1:
-						aniversariantes[0][i] = listaAlunos[i][0]
-						pare
-					caso 2:
-						aniversariantes[1][i] = listaAlunos[i][0]
-						pare
-					caso 3:
-						aniversariantes[2][i] = listaAlunos[i][0]
-						pare
-					caso 4:
-						aniversariantes[3][i] = listaAlunos[i][0]
-						pare
-					caso 5:
-						aniversariantes[4][i] = listaAlunos[i][0]
-						pare
-					caso 6:
-						aniversariantes[5][i] = listaAlunos[i][0]
-						pare
-					caso 7:
-						aniversariantes[6][i] = listaAlunos[i][0]
-						pare
-					caso 8:
-						aniversariantes[7][i] = listaAlunos[i][0]
-						pare
-					caso 9:
-						aniversariantes[8][i] = listaAlunos[i][0]
-						pare
-					caso 10:
-						aniversariantes[9][i] = listaAlunos[i][0]
-						pare
-					caso 11:
-						aniversariantes[10][i] = listaAlunos[i][0]
-						pare
-					caso 12:
-						aniversariantes[11][i] = listaAlunos[i][0]
-						pare
-					caso 0:
-						i = linhas
-				}
+		real media_aluno = 0.0
+		real aux = 0.0
+		cadeia maiores[99]
+		logico continua = verdadeiro
+			enquanto(continua){
+					para(inteiro i = 0; i < linhas; i++){
+						media_aluno += (Tipos.cadeia_para_real(listaAlunos[i][3]) + Tipos.cadeia_para_real(listaAlunos[i][4]) + Tipos.cadeia_para_real(listaAlunos[i][5])) / 3
+						se(Tipos.cadeia_para_real(listaAlunos[i][1]) != 0 e media_aluno > aux){
+						 aux = media_aluno
+						 maiores[i] = listaAlunos[i][0]		
+						}
+						senao continua = falso
+					}
 			}
-
-			
-		para(inteiro i = 0; i < 12; i++)
-		{	
-			para(inteiro t = 0; t < 99; t++){
-				se(aniversariantes[i][t] != "0"){
-				escreva("Nascidos no Mês: ", (i+1))
-				escreva("\n------------------------------------------\n")
-					para(inteiro j = 0; j < linhas; j++){
-						se(Tipos.cadeia_para_real(listaAlunos[j][1]) != 0 e listaAlunos[j][0] == aniversariantes[i][j]){
-						 cadeia nomeAluno = listaAlunos[j][0]
+			continua = verdadeiro
+			enquanto(continua){
+			para(inteiro j = 0; j < linhas; j++){
+			 	se(maiores[j] == listaAlunos[j][0]){
+				cadeia nomeAluno = listaAlunos[j][0]
 			                escreva("Aluno: " + listaAlunos[j][0])
 			      		 escreva("\n•Turma: " + listaAlunos[j][2]) 
 			      		 escreva("\n•Nota 1: " + listaAlunos[j][3]) 
@@ -264,12 +226,11 @@ programa
 			      		 escreva("\n")
 						 situacaoAluno(listaAlunos,nomeAluno)
 						 escreva("\n------------------------------------------\n")
-						}
-					}
-	        		}
-		  }
+			 	}
+			 	senao se(listaAlunos[j][0] == "0") continua = falso
 		}
 	}
+}
 
 	funcao muralAniv (cadeia listaAlunos[][]){
 		inteiro linhas = Util.numero_linhas(listaAlunos)
@@ -512,7 +473,8 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 12841; 
+ * @POSICAO-CURSOR = 12082; 
+ * @DOBRAMENTO-CODIGO = [6, 26, 106, 159, 197, 234, 303, 312, 409];
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
