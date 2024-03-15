@@ -2,17 +2,25 @@ programa
 {
 	inclua biblioteca Tipos
 	inclua biblioteca Util
+	inclua biblioteca Matematica
 	
 	funcao exibirMenu()
 	{
-		escreva("\n\nEscolha a opção desejada")
+		escreva("       > Escolinha SERRATEC <")
+		
+		Util.aguarde(700)
+		escreva("\n\n          > MENU INICIAL <")
+		escreva("\n--------------------------------------")
 		escreva("\n1 - Cadastrar Alunos")
 		escreva("\n2 - Escolha a turma para saber a média")
 		escreva("\n3 - Situação do Aluno")
-		escreva("\n4 - Lista geral dos alunos")
+		escreva("\n4 - Lista geral dos Alunos")
 		escreva("\n5 - Editar Aluno Cadastrado")
 		escreva("\n6 - Sair")
-		escreva("\n\nEscolha uma opcao: ")
+		escreva("\n--------------------------------------")
+		escreva("\n\nEscolha uma opção: ")
+		
+	
 	}
 
 	funcao cadastroAluno(cadeia listaAlunos[][])
@@ -71,7 +79,7 @@ programa
 			leia(nota3)
 				enquanto(Tipos.cadeia_para_real(nota3) < 0 ou Tipos.cadeia_para_real(nota3) > 10)
 				{
-					escreva("Valor inválido\n")
+					escreva("Valor inválido.\n")
 					escreva("Digite uma nota entre 0 e 10: ")
 					leia(nota3)
 				}
@@ -87,7 +95,8 @@ programa
 			escreva("Deseja voltar ao MENU INICIAL? ")
 			escreva("\nDigite Sim ou Não: ")
 			leia(parar)
-	
+			limpa()
+			
 			se(parar == "SIM" ou parar == "sim")
 				continua = falso
 		}
@@ -100,11 +109,10 @@ programa
 		limpa()
 		cadeia nomeTurma
 		real media_aluno = 0.0
-		real media_turma
+		real media_turma 
 		inteiro contador = 0
 		
-		
-		escreva("Qual nome da turma: ")
+		escreva("Qual nome da turma? ")
 		leia(nomeTurma)
 		
 		para(inteiro i=0; i<linhas; i++)
@@ -116,31 +124,32 @@ programa
 			}
 		}
 
-		media_turma = media_aluno / contador 
+		media_turma = media_aluno / contador
+		media_turma = Matematica.arredondar(media_turma, 2) 
 
 		se(contador == 0)
 		{
-			 escreva("Não foi encontrado essa turma")
+			 escreva("Não foi encontrado essa turma.")
 		}
 
 		senao{
 				se(media_turma < 6)
 				{
-					escreva("A média da turma foi:" + media_turma + " e o rendimento foi Ruim") 
+					escreva("A média da turma foi: " + media_turma + " e o rendimento foi Ruim.") 
 				}
 
 				se(media_turma >= 6 e media_turma < 8)
 				{
-					escreva("A média da turma foi:" + media_turma + " e o rendimento foi Médio") 
+					escreva("A média da turma foi: " + media_turma + " e o rendimento foi Médio.") 
 				}
 
 				se(media_turma >= 8 e media_turma < 10)
 				{
-					escreva("A média da turma foi:" + media_turma + " e o rendimento foi Bom") 
+					escreva("A média da turma foi: " + media_turma + " e o rendimento foi Bom.") 
 				}
 				se(media_turma == 10)
 				{
-					escreva("A média da turma foi:" + media_turma + " e o rendimento foi Excelente") 
+					escreva("A média da turma foi: " + media_turma + " e o rendimento foi Excelente.") 
 				}
 				
 			}
@@ -162,49 +171,103 @@ programa
 				pare				
 			}
 		}
-
+		media_aluno = Matematica.arredondar(media_aluno, 2) 
+		
 		se(contador == 0)
 		{
-			 escreva("Não foi encontrado esse aluno")
+			 escreva("Não foi encontrado esse aluno.")
 		}
 
 		senao{
 				se(media_aluno < 6)
 				{
-					escreva("•A média do " + nomeAluno + " foi: " + media_aluno)
-					escreva("\n•Situação: REPROVADO!")  
+					escreva("• A média do(a) " + nomeAluno + " foi: " + media_aluno)
+					escreva("\n• Situação: REPROVADO!")  
 				}
 
 				senao
 				{
-					escreva("•A média do " + nomeAluno + " foi: " + media_aluno)
-					escreva("\n•Situação: APROVADO!") 
+					escreva("• A média do(a) " + nomeAluno + " foi: " + media_aluno)
+					escreva("\n• Situação: APROVADO!") 
 				}			
 			}
 			
 	}
 
-	funcao exibicaoAluno (cadeia listaAlunos[][])
+		funcao exibicaoAluno (cadeia listaAlunos[][])
 	{
 		
 		inteiro linhas = Util.numero_linhas(listaAlunos)
-		
-		para(inteiro i = 0; i < linhas; i++)
-		{
-			se(Tipos.cadeia_para_real(listaAlunos[i][1]) != 0){
-			 cadeia nomeAluno = listaAlunos[i][0]
-                escreva("Aluno: " + listaAlunos[i][0])
-      		 escreva("\n•Mês de nascimento: " + listaAlunos[i][1])
-      		 escreva("\n•Turma: " + listaAlunos[i][2]) 
-      		 escreva("\n•Nota 1: " + listaAlunos[i][3]) 
-      		 escreva("\n•Nota 2: " + listaAlunos[i][4]) 
-      		 escreva("\n•Nota 3: " + listaAlunos[i][5]) 
-      		 escreva("\n")
-			 situacaoAluno(listaAlunos,nomeAluno)
-			 escreva("\n------------------------------------------\n")
+		cadeia aniversariantes[12][99]
+		para(inteiro i = 0; i < 12; i++){
+			para(inteiro j = 0; j < 99; j++) aniversariantes[i][j] = "0"
+		}
+		para(inteiro i = 0; i < linhas; i++){
+				escolha(Tipos.cadeia_para_inteiro(listaAlunos[i][1], 10)){
+					caso 1:
+						aniversariantes[0][i] = listaAlunos[i][0]
+						pare
+					caso 2:
+						aniversariantes[1][i] = listaAlunos[i][0]
+						pare
+					caso 3:
+						aniversariantes[2][i] = listaAlunos[i][0]
+						pare
+					caso 4:
+						aniversariantes[3][i] = listaAlunos[i][0]
+						pare
+					caso 5:
+						aniversariantes[4][i] = listaAlunos[i][0]
+						pare
+					caso 6:
+						aniversariantes[5][i] = listaAlunos[i][0]
+						pare
+					caso 7:
+						aniversariantes[6][i] = listaAlunos[i][0]
+						pare
+					caso 8:
+						aniversariantes[7][i] = listaAlunos[i][0]
+						pare
+					caso 9:
+						aniversariantes[8][i] = listaAlunos[i][0]
+						pare
+					caso 10:
+						aniversariantes[9][i] = listaAlunos[i][0]
+						pare
+					caso 11:
+						aniversariantes[10][i] = listaAlunos[i][0]
+						pare
+					caso 12:
+						aniversariantes[11][i] = listaAlunos[i][0]
+						pare
+					caso 0:
+						i = linhas
+				}
 			}
-        }
 
+			
+		para(inteiro i = 0; i < 12; i++)
+		{	
+			para(inteiro t = 0; t < 99; t++){
+				se(aniversariantes[i][t] != "0"){
+				escreva("Nascidos no Mês: ", (i+1))
+				escreva("\n------------------------------------------\n")
+					para(inteiro j = 0; j < linhas; j++){
+						se(Tipos.cadeia_para_real(listaAlunos[j][1]) != 0 e listaAlunos[j][0] == aniversariantes[i][j]){
+						 cadeia nomeAluno = listaAlunos[j][0]
+			                escreva("Aluno: " + listaAlunos[j][0])
+			      		 escreva("\n•Turma: " + listaAlunos[j][2]) 
+			      		 escreva("\n•Nota 1: " + listaAlunos[j][3]) 
+			      		 escreva("\n•Nota 2: " + listaAlunos[j][4]) 
+			      		 escreva("\n•Nota 3: " + listaAlunos[j][5]) 
+			      		 escreva("\n")
+						 situacaoAluno(listaAlunos,nomeAluno)
+						 escreva("\n------------------------------------------\n")
+						}
+					}
+	        		}
+		  }
+		}
 	}
 
 	funcao zerar (cadeia listaAlunos[][]){
@@ -216,14 +279,13 @@ programa
 		}
 	}
 
-	//transformar os "se" em escolha caso
 	funcao editarAluno (cadeia listaAlunos[][]){
 		inteiro linhas = Util.numero_linhas(listaAlunos)
 		logico continua = verdadeiro
 		cadeia nomeAluno
 		inteiro lugar = 0 
 		enquanto(continua){
-			escreva("Qual o nome do aluno que deseja editar: ")
+			escreva("Qual o nome do aluno que deseja editar? ")
 			leia(nomeAluno)
 				para(inteiro i = 0; i < linhas; i++){
 					se(listaAlunos[i][0] == nomeAluno){
@@ -233,13 +295,13 @@ programa
 				}
 				cadeia parar
 				inteiro dado = 0
-				escreva("\n 1- Nome\n 2- Mês de Aniversário\n 3- Turma\n 4- Nota1\n 5- Nota2\n 6- Nota3\n")
+				escreva("\n 1- Nome\n 2- Mês de Aniversário\n 3- Turma\n 4- Nota 1\n 5- Nota 2\n 6- Nota 3\n")
 				escreva("\nEscolha o dado que deseja alterar: ")
 				leia(dado)
 					enquanto(dado < 0 e dado > 6)
 					{
 						escreva("Valor inválido\n")
-						escreva("\n 1- Nome\n 2- Mês de Aniversário\n 3- Turma\n 4- Nota1\n 5- Nota2\n 6- Nota3\n")
+						escreva("\n 1- Nome\n 2- Mês de Aniversário\n 3- Turma\n 4- Nota 1\n 5- Nota 2\n 6- Nota 3\n")
 						escreva("\nEscolha o dado que deseja alterar: ")
 						leia(dado)
 					}
@@ -345,7 +407,7 @@ programa
 				
 				caso 3://Situação do aluno
 					limpa()
-					escreva("Qual o nome do Aluno: ")
+					escreva("Qual o nome do Aluno? ")
 					leia(nomeAluno)
 					limpa()
 					situacaoAluno(lista,nomeAluno)					
@@ -375,7 +437,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 683; 
+ * @POSICAO-CURSOR = 6755; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
