@@ -231,41 +231,23 @@ programa
 
 		funcao exibicaoAluno (cadeia listaAlunos[][])
 	{
-		
 		inteiro linhas = Util.numero_linhas(listaAlunos)
-		real media_aluno = 0.0
-		real aux = 0.0
-		cadeia maiores[99]
-		logico continua = verdadeiro
-		inteiro contador = 0
-			enquanto(continua){
-					para(inteiro i = 0; i < linhas; i++){
-						media_aluno += (Tipos.cadeia_para_real(listaAlunos[i][3]) + Tipos.cadeia_para_real(listaAlunos[i][4]) + Tipos.cadeia_para_real(listaAlunos[i][5])) / 3
-						se(Tipos.cadeia_para_real(listaAlunos[i][1]) != 0 e media_aluno > aux){
-						 aux = media_aluno
-						 maiores[i] = listaAlunos[i][0]		
-						}
-						senao se(listaAlunos[i][0] == "0") contador++
-					}
-				se(contador > 20) continua = falso
+		
+		para(inteiro i = 0; i < linhas; i++)
+		{
+			se(Tipos.cadeia_para_real(listaAlunos[i][1]) != 0){
+			 cadeia nomeAluno = listaAlunos[i][0]
+                escreva("Qual o nome do Aluno? " + listaAlunos[i][0])
+      		 escreva("\n• Mês de nascimento: " + listaAlunos[i][1])
+      		 escreva("\n• Turma: " + listaAlunos[i][2]) 
+      		 escreva("\n• Nota 1: " + listaAlunos[i][3]) 
+      		 escreva("\n• Nota 2: " + listaAlunos[i][4]) 
+      		 escreva("\n• Nota 3: " + listaAlunos[i][5]) 
+      		 escreva("\n")
+			 situacaoAluno(listaAlunos,nomeAluno)
+			 escreva("\n------------------------------------------\n")
 			}
-			continua = verdadeiro
-			enquanto(continua){
-			para(inteiro j = 0; j < linhas; j++){
-			 	se(maiores[j] == listaAlunos[j][0]){
-				cadeia nomeAluno = listaAlunos[j][0]
-			                escreva("Aluno: " + listaAlunos[j][0])
-			      		 escreva("\n• Turma: " + listaAlunos[j][2]) 
-			      		 escreva("\n• Nota 1: " + listaAlunos[j][3]) 
-			      		 escreva("\n• Nota 2: " + listaAlunos[j][4]) 
-			      		 escreva("\n• Nota 3: " + listaAlunos[j][5]) 
-			      		 escreva("\n")
-						 situacaoAluno(listaAlunos,nomeAluno)
-						 escreva("\n------------------------------------------\n")
-			 	}
-			 	senao se(listaAlunos[j][0] == "0") continua = falso
-		}
-	}
+        }
 }
 
 	funcao muralAniv (cadeia listaAlunos[][]){
@@ -376,11 +358,13 @@ programa
 				se(listaAlunos[lugar][0] == nomeAluno){
 					limpa()
 					se(dado == 0){
-						escreva("Nome: ")
+						escreva("Nome atual: ", listaAlunos[lugar][0])
+						escreva("\n Novo nome: ")
 						leia(listaAlunos[lugar][0])
 					}
 					se(dado == 1){
-						escreva("Mês de nascimento: ")
+						escreva("Mês de nascimento atual: ", listaAlunos[lugar][1])
+						escreva("\n Novo mês de nascimento: ")
 						leia(listaAlunos[lugar][1])
 							enquanto(Tipos.cadeia_para_real(listaAlunos[lugar][1]) < 0 e Tipos.cadeia_para_real(listaAlunos[lugar][1]) > 12)
 							{
@@ -390,11 +374,13 @@ programa
 							}
 					}
 					se(dado == 2){
-						escreva("Digite a turma: ")
+						escreva("Turma atual: ", listaAlunos[lugar][2])
+						escreva("\nNova  turma: ", listaAlunos[lugar][2])
 						leia(listaAlunos[lugar][2])
 					}
 					se(dado == 3){
-						escreva("Digite a primeira nota: ")
+						escreva("Nota atual :", listaAlunos[lugar][3])
+						escreva("\nDigite a nova primeira nota: ")
 						leia(listaAlunos[lugar][3])
 							enquanto(Tipos.cadeia_para_real(listaAlunos[lugar][3]) < 0 ou Tipos.cadeia_para_real(listaAlunos[lugar][3]) > 10)
 							{
@@ -404,7 +390,8 @@ programa
 							}
 					}
 					se(dado == 4){
-						escreva("Digite a segunda nota: ")
+						escreva("Nota atual :", listaAlunos[lugar][4])
+						escreva("\nDigite a nova segunda nota: ")
 						leia(listaAlunos[lugar][4])
 							enquanto(Tipos.cadeia_para_real(listaAlunos[lugar][4]) < 0 ou Tipos.cadeia_para_real(listaAlunos[lugar][4]) > 10)
 							{
@@ -415,7 +402,8 @@ programa
 					}
 	
 					se(dado == 5){
-						escreva("Digite a terceira nota: ")
+						escreva("Nota atual :", listaAlunos[lugar][5])
+						escreva("\nDigite a nova terceira nota: ")
 						leia(listaAlunos[lugar][5])
 							enquanto(Tipos.cadeia_para_real(listaAlunos[lugar][5]) < 0 ou Tipos.cadeia_para_real(listaAlunos[lugar][5]) > 10)
 							{
@@ -518,7 +506,8 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 13350; 
+ * @POSICAO-CURSOR = 4901; 
+ * @DOBRAMENTO-CODIGO = [193, 237, 235, 252, 321];
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

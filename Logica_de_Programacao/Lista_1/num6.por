@@ -3,12 +3,12 @@ programa
 	
 	funcao inicio()
 	{
-		inteiro x 
+		inteiro ano
+		escreva("Digite sua data de nascimento: ")
+		leia(ano)
 
-		escreva("Digite um valor para x: ")
-		leia(x)
-
-		escreva("Antecessor: ", x -1, "\nSucessor: ", x + 1)
+		escreva("Sua idade é: ", 2024 - ano)
+		
 	}
 }
 /* $$$ Portugol Studio $$$ 
@@ -16,7 +16,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 155; 
+ * @POSICAO-CURSOR = 151; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

@@ -3,15 +3,12 @@ programa
 	
 	funcao inicio()
 	{
-		inteiro x, y
-		
-		escreva("Digite um valor para x: ")
+		inteiro x 
+
+		escreva("Digite o tamanho do lado do quadrado: ")
 		leia(x)
 
-		escreva("Digite um valor para y: ")
-		leia(y)
-
-		escreva("Soma: ", x + y, "\nSubtração : ", x - y, "\nMultiplicação: ", x*y, "\nDivisão: ", x/y)
+		escreva("Área: ", x*x)
 	}
 }
 /* $$$ Portugol Studio $$$ 
