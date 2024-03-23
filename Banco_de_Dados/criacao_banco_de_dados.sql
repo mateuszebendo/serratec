@@ -31,7 +31,7 @@ id_pergunta int,
 foreign key (id_funcionario) references funcionarios (id_funcionario),
 foreign key (id_pergunta) references perguntas (id_pergunta));
 
--create table participacao
+create table participacao
 (id_resposta serial primary key, 
 data_participacao date default CURRENT_DATE, 
 id_funcionario int,
@@ -39,3 +39,6 @@ id_quizz int,
 foreign key (id_funcionario) references funcionarios (id_funcionario), 
 foreign key (id_quizz) references quizz (id_quizz));
 
+alter table respostas add constraint check_opcao_escolhida CHECK (opcao_escolhida BETWEEN 'a' AND 'd');
+alter table respostas drop constraint check_opcao_escolhida; 
+alter table respostas add constraint check_opcao_escolhida check(opcao_escolhida IN ('a', 'b', 'c', 'd'));
