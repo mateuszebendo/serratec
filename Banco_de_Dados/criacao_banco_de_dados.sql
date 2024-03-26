@@ -39,6 +39,5 @@ id_quizz int,
 foreign key (id_funcionario) references funcionarios (id_funcionario), 
 foreign key (id_quizz) references quizz (id_quizz));
 
-alter table respostas add constraint check_opcao_escolhida CHECK (opcao_escolhida BETWEEN 'a' AND 'd');
 alter table respostas drop constraint check_opcao_escolhida; 
 alter table respostas add constraint check_opcao_escolhida check(opcao_escolhida IN ('a', 'b', 'c', 'd'));
