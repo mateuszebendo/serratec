@@ -46,13 +46,4 @@ public class Carro extends Veiculo{
         this.cilindrada = cilindrada;
     }
 
-    public static void main(String[] args) {
-
-        Carro simples = new Carro ("Hatch", 98, "Ford", 87);
-
-        simples.nome = "Escort";
-        simples.airbag = true;
-
-        System.out.println(simples);
-    }
 }
