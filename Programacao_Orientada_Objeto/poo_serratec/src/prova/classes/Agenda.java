@@ -13,18 +13,6 @@ public class Agenda {
 		this.artista = artista;
 	}
 
-	public LocalDate getData() {
-		return data;
-	}
-
-	public LocalTime getHorario() {
-		return horario;
-	}
-
-	public Artista getArtista() {
-		return artista;
-	}
-
 	@Override
 	public String toString() {
 		return "\n--> Arstista: " + artista + "\n--> Data: " + data + "\n--> Horario: " + horario + "\n";
